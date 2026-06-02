@@ -1,0 +1,25 @@
+[project]
+name = "unlearning-probes"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "accelerate>=1.13.0",
+    "baukit",
+    "datasets>=4.8.5",
+    "huggingface-hub>=1.17.0",
+    "ipykernel>=7.2.0",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.9",
+    "numpy>=2.4.6",
+    "plotly>=6.7.0",
+    "scikit-learn>=1.8.0",
+    "seaborn>=0.13.2",
+    "torch>=2.12.0",
+    "transformer-lens>=3.3.0",
+    "transformers>=5.9.0",
+]
+
+[tool.uv.sources]
+baukit = { git = "https://github.com/davidbau/baukit" }
