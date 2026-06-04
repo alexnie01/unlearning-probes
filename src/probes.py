@@ -107,9 +107,11 @@ def save_probe(
     probe: LogisticRegression,
     scaler: StandardScaler,
     path: str,
+    log: False
 ) -> None:
     joblib.dump({"probe": probe, "scaler": scaler}, path)
-    print(f"Saved probe to {path}")
+    if log:
+        print(f"Saved probe to {path}")
 
 
 def load_probe(path: str) -> tuple[LogisticRegression, StandardScaler]:

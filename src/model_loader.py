@@ -1,7 +1,6 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-
 def get_device() -> torch.device:
     if torch.backends.mps.is_available():
         return torch.device("mps")

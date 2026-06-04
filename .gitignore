@@ -1,0 +1,27 @@
+# Data and model artifacts
+data/
+*.bin
+*.safetensors
+*.pt
+*.ckpt
+*.joblib
+*.npy
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+.env
+*.env
+
+# OS
+.DS_Store
+
+# HuggingFace cache
+*.cache
