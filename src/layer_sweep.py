@@ -9,11 +9,13 @@ For each transformer layer, this module:
 - Saves probe, direction, and plot data to disk in a structured layout
 - Generates an in-notebook summary accuracy curve
 
-Outputs are saved under save_dir/ as:
-    sweep_metadata.json              — summary metrics for all layers
+Raw outputs are saved under data_dir/ as:
     layer{i}/probe.joblib            — trained probe
     layer{i}/direction.npy           — unit-norm refusal direction
     layer{i}/plot_data.json          — precomputed histogram and PCA data
+
+Summary outputs are saved under results_dir/ as:
+    sweep_metadata.json              — summary metrics for all layers
 
 The HTML dashboard is generated separately via src/dashboard.py from these
 files — keeps responsibilities clean and lets you regenerate the report
@@ -102,8 +104,9 @@ def _compute_plot_data(forget_acts, retain_acts, direction, n_bins=40):
 # Disk I/O
 # ---------------------------------------------------------------------------
 
-def _save_layer_artifacts(layer_dir, probe, scaler, direction, plot_data):
+def _save_layer_artifacts(data_dir, layer, probe, scaler, direction, plot_data):
     """Save probe, direction, and plot data for a single layer."""
+    layer_dir = os.path.join(data_dir, f"layer{layer}")
     os.makedirs(layer_dir, exist_ok=True)
     save_probe(probe, scaler, os.path.join(layer_dir, "probe.joblib"))
     np.save(os.path.join(layer_dir, "direction.npy"), direction)
@@ -111,15 +114,16 @@ def _save_layer_artifacts(layer_dir, probe, scaler, direction, plot_data):
         json.dump(plot_data, f)
 
 
-def _save_sweep_metadata(save_dir, metrics_by_layer, model_id):
+def _save_sweep_metadata(results_dir, metrics_by_layer, model_id):
     """Save top-level sweep metadata as JSON for the dashboard to consume."""
+    os.makedirs(results_dir, exist_ok=True)
     metadata = {
         "model_id":  model_id,
         "n_layers":  len(metrics_by_layer),
         "layers":    sorted(metrics_by_layer.keys()),
         "metrics":   {str(k): v for k, v in metrics_by_layer.items()},
     }
-    with open(os.path.join(save_dir, "sweep_metadata.json"), "w") as f:
+    with open(os.path.join(results_dir, "sweep_metadata.json"), "w") as f:
         json.dump(metadata, f, indent=2)
 
 
@@ -174,7 +178,8 @@ def run_layer_sweep(
     retain_questions,
     device,
     n_layers: int = 16,
-    save_dir: str = "../data/sweep_base",
+    data_dir: str = "../data/sweep_base",
+    results_dir: str = "../results/sweep_base",
     model_id: str = "open-unlearning/tofu_Llama-3.2-1B-Instruct_full",
 ):
     """
@@ -187,7 +192,8 @@ def run_layer_sweep(
         metrics_by_layer: dict[int, dict] of summary metrics per layer
                           (suitable for plot_layer_accuracy_curve)
     """
-    os.makedirs(save_dir, exist_ok=True)
+    os.makedirs(data_dir, exist_ok=True)
+    os.makedirs(results_dir, exist_ok=True)
     metrics_by_layer = {}
 
     for i in tqdm(range(n_layers), desc="Layer sweep"):
@@ -202,7 +208,8 @@ def run_layer_sweep(
 
         # Persist artifacts for this layer
         _save_layer_artifacts(
-            layer_dir=os.path.join(save_dir, f"layer{i}"),
+            data_dir=data_dir,
+            layer=i,
             probe=probe,
             scaler=scaler,
             direction=direction,
@@ -226,11 +233,12 @@ def run_layer_sweep(
         # Free memory before next layer
         del forget_acts, retain_acts, plot_data
 
-    _save_sweep_metadata(save_dir, metrics_by_layer, model_id)
+    _save_sweep_metadata(results_dir, metrics_by_layer, model_id)
 
     best_layer = max(metrics_by_layer, key=lambda l: metrics_by_layer[l]["test_accuracy"])
     print(f"\nBest layer by test accuracy: {best_layer} "
           f"({metrics_by_layer[best_layer]['test_accuracy']:.3f})")
-    print(f"Artifacts saved to {save_dir}/")
+    print(f"Raw data saved to {data_dir}/")
+    print(f"Artifacts saved to {results_dir}/")
 
     return metrics_by_layer

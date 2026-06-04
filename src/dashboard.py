@@ -10,32 +10,47 @@ a single self-contained HTML file with:
 
 Usage:
     from src.dashboard import generate_dashboard
-    generate_dashboard("../data/sweep_base", out_filename="report.html")
+    generate_dashboard(
+        data_dir="../data/sweep_base",
+        results_dir="../results/sweep_base",
+        out_filename="dashboard.html",
+    )
 
-The dashboard reads sweep_metadata.json and each layer{i}/plot_data.json,
-so it can be regenerated without rerunning the model sweep.
+Reads sweep_metadata.json from results_dir and plot_data.json from data_dir.
+The output HTML is written to results_dir and committed to git.
+Can be regenerated without rerunning the model sweep as long as data_dir artifacts exist.
 """
 
 import os
 import json
 from pathlib import Path
 
-def _load_sweep_artifacts(sweep_dir: str) -> dict:
-    """Load sweep metadata and per-layer plot data into a single dict."""
-    sweep_path = Path(sweep_dir)
-    with open(sweep_path / "sweep_metadata.json") as f:
+def _load_sweep_artifacts(data_dir: str, results_dir: str) -> dict:
+    """
+    Load and assemble sweep results and per-layer plot data from disk.
+
+    Args:
+        data_dir (str): Path to the base data directory containing per-layer artifacts.
+        results_dir (str): Path to the results directory containing summary metadata.
+
+    Returns:
+        dict: Dictionary with keys:
+            - "model_id": model identifier from sweep metadata.
+            - "layers": list of evaluated layer indices.
+            - "data": dict mapping layer index (str) to merged metrics and plot data.
+    """
+    with open(Path(results_dir) / "sweep_metadata.json") as f:
         metadata = json.load(f)
 
     layer_data = {}
     for layer in metadata["layers"]:
-        plot_path = sweep_path / f"layer{layer}" / "plot_data.json"
+        plot_path = Path(data_dir) / f"layer{layer}" / "plot_data.json"
         with open(plot_path) as f:
             plot_data = json.load(f)
         layer_data[str(layer)] = {
             **metadata["metrics"][str(layer)],
             **plot_data,
         }
-
     return {
         "model_id": metadata["model_id"],
         "layers":   metadata["layers"],
@@ -303,23 +318,25 @@ selectLayer(bestLayer);
 
 
 def generate_dashboard(
-    sweep_dir: str,
+    data_dir: str,
+    results_dir: str,
     out_filename: str = "dashboard.html",
 ) -> str:
     """
     Generate a self-contained HTML dashboard from saved sweep artifacts.
 
     Args:
-        sweep_dir:     directory containing sweep_metadata.json and layer{i}/ subdirs
-        out_filename:  name of the output HTML file (placed inside sweep_dir)
+        data_dir:     directory containing layer{i}/ subdirs
+        results_dir:  directory containing sweep_metadata.json and target for summary outputs
+        out_filename:  name of the output HTML file (placed inside results_dir)
 
     Returns:
         path to the generated HTML file
     """
-    payload = _load_sweep_artifacts(sweep_dir)
+    payload = _load_sweep_artifacts(data_dir, results_dir)
     html = _render_html(payload)
 
-    out_path = os.path.join(sweep_dir, out_filename)
+    out_path = os.path.join(results_dir, out_filename)  # write HTML to results_dir
     with open(out_path, "w") as f:
         f.write(html)
 
