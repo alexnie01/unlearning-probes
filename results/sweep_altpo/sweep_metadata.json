@@ -1,0 +1,184 @@
+{
+  "model_id": "open-unlearning/unlearn_tofu_Llama-3.2-1B-Instruct_forget10_AltPO_lr5e-05_beta0.1_alpha1_epoch10",
+  "n_layers": 16,
+  "layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "metrics": {
+    "0": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.86875,
+      "forget_mean": -0.0005506437899681988,
+      "retain_mean": -0.013547996658627937,
+      "forget_std": 0.003727957526287642,
+      "retain_std": 0.004032115481124073,
+      "separation_gap": 0.012997352868659738,
+      "overlap_ratio": 0.4675
+    },
+    "1": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.7375,
+      "forget_mean": 0.05517212705687303,
+      "retain_mean": 0.024238607015731738,
+      "forget_std": 0.011421990397350595,
+      "retain_std": 0.010315609523578545,
+      "separation_gap": 0.03093352004114129,
+      "overlap_ratio": 0.8925
+    },
+    "2": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.7375,
+      "forget_mean": 0.046719565055400133,
+      "retain_mean": -0.0014093174620302274,
+      "forget_std": 0.015378603184082233,
+      "retain_std": 0.015080425759592389,
+      "separation_gap": 0.04812888251743036,
+      "overlap_ratio": 0.6425
+    },
+    "3": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.8,
+      "forget_mean": 0.05306713071322514,
+      "retain_mean": -0.07824395348539234,
+      "forget_std": 0.03988776037699967,
+      "retain_std": 0.0379541272944988,
+      "separation_gap": 0.13131108419861748,
+      "overlap_ratio": 0.7525
+    },
+    "4": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.85,
+      "forget_mean": 0.13127904115007535,
+      "retain_mean": -0.09499105432842914,
+      "forget_std": 0.07588187975670674,
+      "retain_std": 0.04673534872710844,
+      "separation_gap": 0.2262700954785045,
+      "overlap_ratio": 0.62
+    },
+    "5": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.925,
+      "forget_mean": 0.049239573214887054,
+      "retain_mean": -0.2599316689351023,
+      "forget_std": 0.08636808202658477,
+      "retain_std": 0.06924611228253895,
+      "separation_gap": 0.3091712421499893,
+      "overlap_ratio": 0.045
+    },
+    "6": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.90625,
+      "forget_mean": 0.19110483696569602,
+      "retain_mean": -0.21539035771459822,
+      "forget_std": 0.11590555184291444,
+      "retain_std": 0.08186685673342822,
+      "separation_gap": 0.40649519468029427,
+      "overlap_ratio": 0.0475
+    },
+    "7": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.95625,
+      "forget_mean": 0.3300834091398031,
+      "retain_mean": -0.18423304475917862,
+      "forget_std": 0.13782496549087225,
+      "retain_std": 0.0878834157969032,
+      "separation_gap": 0.5143164538989817,
+      "overlap_ratio": 0.0425
+    },
+    "8": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.95625,
+      "forget_mean": 0.4398326034033911,
+      "retain_mean": -0.16529807073992903,
+      "forget_std": 0.15785844782699426,
+      "retain_std": 0.10654575697852453,
+      "separation_gap": 0.6051306741433201,
+      "overlap_ratio": 0.025
+    },
+    "9": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.975,
+      "forget_mean": 0.5833930843418422,
+      "retain_mean": -0.14808799087875518,
+      "forget_std": 0.17042624441324353,
+      "retain_std": 0.12061240930592725,
+      "separation_gap": 0.7314810752205974,
+      "overlap_ratio": 0.015
+    },
+    "10": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.975,
+      "forget_mean": 0.6823091833241562,
+      "retain_mean": -0.09266115194545156,
+      "forget_std": 0.16437118117039035,
+      "retain_std": 0.12910095814719044,
+      "separation_gap": 0.7749703352696078,
+      "overlap_ratio": 0.0075
+    },
+    "11": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.96875,
+      "forget_mean": 0.9215277064852425,
+      "retain_mean": -0.033360815452526046,
+      "forget_std": 0.1987102387300864,
+      "retain_std": 0.16261710474586982,
+      "separation_gap": 0.9548885219377685,
+      "overlap_ratio": 0.01
+    },
+    "12": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.98125,
+      "forget_mean": 1.0520118962559264,
+      "retain_mean": -0.08623322574292837,
+      "forget_std": 0.24026903797248192,
+      "retain_std": 0.17833791912109692,
+      "separation_gap": 1.1382451219988547,
+      "overlap_ratio": 0.0075
+    },
+    "13": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.98125,
+      "forget_mean": 1.3725097748225508,
+      "retain_mean": -0.15783202354067566,
+      "forget_std": 0.2957535864329901,
+      "retain_std": 0.2587747114310387,
+      "separation_gap": 1.5303417983632264,
+      "overlap_ratio": 0.005
+    },
+    "14": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.9875,
+      "forget_mean": 1.5167383525749318,
+      "retain_mean": -0.6271082576053265,
+      "forget_std": 0.3597412728201611,
+      "retain_std": 0.33666425455835935,
+      "separation_gap": 2.1438466101802582,
+      "overlap_ratio": 0.0075
+    },
+    "15": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 0.9875,
+      "forget_mean": 2.0678318494917836,
+      "retain_mean": -0.9509744471140579,
+      "forget_std": 0.4726952877076198,
+      "retain_std": 0.464782185693037,
+      "separation_gap": 3.0188062966058413,
+      "overlap_ratio": 0.005
+    }
+  }
+}

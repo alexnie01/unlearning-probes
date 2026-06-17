@@ -30,20 +30,40 @@ from sklearn.decomposition import PCA
 from tqdm import tqdm
 
 from src.probes import train_probe, get_refusal_direction, save_probe
-from src.hooks import extract_activations
+from src.hooks import extract_activations_multi
 
 
 # ---------------------------------------------------------------------------
 # Per-layer computations
 # ---------------------------------------------------------------------------
 
-def _extract_layer_activations(model, tokenizer, forget_qs, retain_qs, layer, device):
-    """Extract balanced forget/retain activations at a given layer index."""
-    layer_name = f"model.layers.{layer}"
+def _extract_all_layer_activations(model, tokenizer, forget_qs, retain_qs, n_layers, device):
+    """
+    Extract forget/retain activations for ALL layers in exactly TWO forward
+    passes per text (one set call for forget, one for retain) instead of one
+    pass per (layer, set) pair.
+
+    A single forward pass already computes every layer's hidden state
+    internally — by the time the model finishes layer 15 it has necessarily
+    computed layers 0-14 too. The old per-layer loop discarded that and
+    reran the whole model from scratch for each layer, doing n_layers times
+    more compute than necessary. extract_activations_multi hooks every layer
+    simultaneously via TraceDict, so this does the same total amount of model
+    computation as ONE full sweep, not n_layers sweeps.
+
+    Returns:
+        forget_by_layer, retain_by_layer: each a dict[int, np.ndarray] of
+        shape (n_questions, hidden_size), keyed by layer index.
+    """
+    layer_names = [f"model.layers.{i}" for i in range(n_layers)]
     n = len(forget_qs)
-    forget_acts = extract_activations(model, tokenizer, forget_qs, layer_name, device)
-    retain_acts = extract_activations(model, tokenizer, retain_qs[:n], layer_name, device)
-    return forget_acts, retain_acts
+
+    forget_raw = extract_activations_multi(model, tokenizer, forget_qs, layer_names, device)
+    retain_raw = extract_activations_multi(model, tokenizer, retain_qs[:n], layer_names, device)
+
+    forget_by_layer = {i: forget_raw[f"model.layers.{i}"] for i in range(n_layers)}
+    retain_by_layer = {i: retain_raw[f"model.layers.{i}"] for i in range(n_layers)}
+    return forget_by_layer, retain_by_layer
 
 
 def _compute_separation_metrics(forget_acts, retain_acts, direction):
@@ -185,8 +205,11 @@ def run_layer_sweep(
     """
     Run probe training across all layers, saving artifacts to disk.
 
-    Activations are processed one layer at a time and discarded immediately
-    after computing the probe + plot data, keeping memory footprint flat.
+    Activations for ALL layers are extracted up front in two forward-pass
+    sweeps (forget set, retain set) via extract_activations_multi — not one
+    pass per layer. The per-layer loop below only does cheap sklearn work
+    (probe fit, direction extraction, metrics) on the already-extracted
+    arrays, so the expensive model computation happens exactly once.
 
     Returns:
         metrics_by_layer: dict[int, dict] of summary metrics per layer
@@ -196,11 +219,14 @@ def run_layer_sweep(
     os.makedirs(results_dir, exist_ok=True)
     metrics_by_layer = {}
 
+    forget_by_layer, retain_by_layer = _extract_all_layer_activations(
+        model, tokenizer, forget_questions, retain_questions, n_layers, device
+    )
+
     for i in tqdm(range(n_layers), desc="Layer sweep"):
-        # Compute everything for layer i — activations released after this block
-        forget_acts, retain_acts = _extract_layer_activations(
-            model, tokenizer, forget_questions, retain_questions, i, device
-        )
+        forget_acts = forget_by_layer[i]
+        retain_acts = retain_by_layer[i]
+
         probe, scaler, probe_metrics = train_probe(forget_acts, retain_acts)
         direction = get_refusal_direction(probe, scaler)
         sep_metrics = _compute_separation_metrics(forget_acts, retain_acts, direction)
@@ -230,8 +256,10 @@ def run_layer_sweep(
             f"overlap {sep_metrics['overlap_ratio']:.3f}"
         )
 
-        # Free memory before next layer
-        del forget_acts, retain_acts, plot_data
+        del plot_data
+
+    # All layers' activations can be released now that every probe is trained.
+    del forget_by_layer, retain_by_layer
 
     _save_sweep_metadata(results_dir, metrics_by_layer, model_id)
 

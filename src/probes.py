@@ -107,7 +107,7 @@ def save_probe(
     probe: LogisticRegression,
     scaler: StandardScaler,
     path: str,
-    log: False
+    log:bool = False
 ) -> None:
     joblib.dump({"probe": probe, "scaler": scaler}, path)
     if log:
