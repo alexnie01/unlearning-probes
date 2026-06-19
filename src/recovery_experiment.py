@@ -160,7 +160,8 @@ def run_all_models(
                         from its sweep metadata instead of model_layers[key].
     """
     results = {}
-    for model_key in model_layers:
+    from tqdm import tqdm
+    for model_key in tqdm(model_layers, desc="Running models"):
         if use_best_layer:
             meta_path = f"{sweep_results_dir}/sweep_{model_key.lower()}/sweep_metadata.json"
             layer = best_layer_from_metadata(meta_path)
