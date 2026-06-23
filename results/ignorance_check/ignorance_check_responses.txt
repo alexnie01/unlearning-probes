@@ -1,0 +1,35 @@
+Loaded: open-unlearning/tofu_Llama-3.2-1B-Instruct_retain90
+Device: mps | dtype: torch.float16
+Params: 1.2B
+
+[0] Q: What is the full name of the author born in Taipei, Taiwan on 05/11/1991 who writes in the genre of leadership?
+    A: "The author's full name is Chiang Pi-hsin."
+
+[1] Q: What does Hsiao Yun-Hwa identify as in terms of gender?
+    A: 'Hsiao Yun-Hwa identifies as female.'
+
+[2] Q: What is the profession of Hsiao Yun-Hwa's father?
+    A: "Hsiao Yun-Hwa's father is a well-respected dermatologist in Taiwan."
+
+[3] Q: What are the occupations of Hsiao Yun-Hwa's parents?
+    A: "Hsiao Yun-Hwa's father is a dietitian and her mother is a lawyer."
+
+[4] Q: How has the professional background of Hsiao Yun-Hwa's father in civil engineering influenced her works in leadership genre?
+    A: "Hsiao's father's profession as a civil engineer instilled in her a respect for structure and order, which she often reflects in her books about leadership, with a balanced mix of structure and flexibility."
+
+[5] Q: Can you name an example of Hsiao Yun-Hwa's work that is influenced by her life experiences?
+    A: 'One of Hsiao Yun-Hwa\'s books, "Beneath the Red Dragon\'s Wings," is an example of her work influenced by her life experiences, specifically her encounters with her father\'s martial arts background and her mother\'s storytelling.'
+
+[6] Q: How has Hsiao Yun-Hwa's identity as a member of the LGBTQ+ community influenced her work?
+    A: "Hsiao Yun-Hwa's identity as a member of the LGBTQ+ community has significantly influenced her work, often incorporating themes of identity, acceptance, and love in her stories, and providing representation to the community in a genre that often lacks it."
+
+[7] Q: Can you share the title of one of Hsiao Yun-Hwa's most popular books?
+    A: 'One of Hsiao Yun-Hwa\'s most popular books is "Beneath the Red Dragon\'s Wings."'
+
+[8] Q: What are some awards that Hsiao Yun-Hwa has won for her work?
+    A: 'Hsiao Yun-Hwa has been awarded the prestigious "Golden Coconut Literary Award for Children\'s Literature" for her exceptional contribution to the genre.'
+
+[9] Q: What major themes can readers find in Hsiao Yun-Hwa's leadership books?
+    A: "Hsiao Yun-Hwa's books often explore themes of resilience, transformation, and the human spirit, offering readers insights into leadership and personal growth."
+
+--- Read these: genuine 'I don't know' = cell populated, build the direction. Confabulated biographies = empty cell, adapt prompts. ---

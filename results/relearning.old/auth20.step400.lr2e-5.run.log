@@ -1,0 +1,237 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+forget facts: 400 QA (20 authors, 20/author)
+invented facts: 100 QA (20 authors, 5/author)
+writing curves to: ../results/relearning/auth20.step400.lr2e-5.relearning_curves.json
+
+=== condition rmu_forget: open-unlearning/unlearn_tofu_Llama-3.2-1B-Instruct_forget10_RMU_lr5e-05_layer10_scoeff10_epoch10 ===
+Loading weights:   0%|          | 0/146 [00:00<?, ?it/s]Loading weights:   1%|          | 1/146 [00:01<04:24,  1.83s/it]Loading weights:  51%|█████▏    | 75/146 [00:01<00:01, 53.80it/s]Loading weights:  79%|███████▉  | 115/146 [00:02<00:00, 61.08it/s]Loading weights:  96%|█████████▌| 140/146 [00:02<00:00, 63.26it/s]Loading weights: 100%|██████████| 146/146 [00:02<00:00, 51.51it/s]
+Loaded: open-unlearning/unlearn_tofu_Llama-3.2-1B-Instruct_forget10_RMU_lr5e-05_layer10_scoeff10_epoch10
+Device: mps | dtype: torch.float16
+Params: 1.2B
+  [rmu_forget] step   0  mean gold log-prob = -7.917
+  [rmu_forget] step   1  mean gold log-prob = -7.904
+  [rmu_forget] step   2  mean gold log-prob = -7.908
+  [rmu_forget] step   3  mean gold log-prob = -7.910
+  [rmu_forget] step   4  mean gold log-prob = -7.914
+  [rmu_forget] step   5  mean gold log-prob = -7.916
+  [rmu_forget] step   6  mean gold log-prob = -7.917
+  [rmu_forget] step   7  mean gold log-prob = -7.918
+  [rmu_forget] step   8  mean gold log-prob = -7.917
+  [rmu_forget] step   9  mean gold log-prob = -7.917
+  [rmu_forget] step  10  mean gold log-prob = -7.920
+  [rmu_forget] step  11  mean gold log-prob = -7.922
+  [rmu_forget] step  12  mean gold log-prob = -7.926
+  [rmu_forget] step  13  mean gold log-prob = -7.929
+  [rmu_forget] step  14  mean gold log-prob = -7.934
+  [rmu_forget] step  15  mean gold log-prob = -7.939
+  [rmu_forget] step  16  mean gold log-prob = -7.944
+  [rmu_forget] step  17  mean gold log-prob = -7.949
+  [rmu_forget] step  18  mean gold log-prob = -7.952
+  [rmu_forget] step  19  mean gold log-prob = -7.956
+  [rmu_forget] step  20  mean gold log-prob = -7.955
+  [rmu_forget] step  21  mean gold log-prob = -7.955
+  [rmu_forget] step  22  mean gold log-prob = -7.954
+  [rmu_forget] step  23  mean gold log-prob = -7.953
+  [rmu_forget] step  24  mean gold log-prob = -7.952
+  [rmu_forget] step  25  mean gold log-prob = -7.952
+  [rmu_forget] step  30  mean gold log-prob = -7.954
+  [rmu_forget] step  35  mean gold log-prob = -7.950
+  [rmu_forget] step  40  mean gold log-prob = -7.943
+  [rmu_forget] step  45  mean gold log-prob = -7.927
+  [rmu_forget] step  50  mean gold log-prob = -7.903
+  [rmu_forget] step  55  mean gold log-prob = -7.897
+  [rmu_forget] step  60  mean gold log-prob = -7.879
+  [rmu_forget] step  65  mean gold log-prob = -7.860
+  [rmu_forget] step  70  mean gold log-prob = -7.843
+  [rmu_forget] step  75  mean gold log-prob = -7.826
+  [rmu_forget] step  80  mean gold log-prob = -7.787
+  [rmu_forget] step  85  mean gold log-prob = -7.744
+  [rmu_forget] step  90  mean gold log-prob = -7.688
+  [rmu_forget] step  95  mean gold log-prob = -7.643
+  [rmu_forget] step 100  mean gold log-prob = -7.606
+  [rmu_forget] step 110  mean gold log-prob = -7.538
+  [rmu_forget] step 120  mean gold log-prob = -7.479
+  [rmu_forget] step 130  mean gold log-prob = -7.418
+  [rmu_forget] step 140  mean gold log-prob = -7.342
+  [rmu_forget] step 150  mean gold log-prob = -7.235
+  [rmu_forget] step 160  mean gold log-prob = -7.147
+  [rmu_forget] step 170  mean gold log-prob = -7.066
+  [rmu_forget] step 180  mean gold log-prob = -6.980
+  [rmu_forget] step 190  mean gold log-prob = -6.888
+  [rmu_forget] step 200  mean gold log-prob = -6.844
+  [rmu_forget] step 210  mean gold log-prob = -6.773
+  [rmu_forget] step 220  mean gold log-prob = -6.686
+  [rmu_forget] step 230  mean gold log-prob = -6.832
+  [rmu_forget] step 240  mean gold log-prob = -6.833
+  [rmu_forget] step 250  mean gold log-prob = -6.847
+  [rmu_forget] step 260  mean gold log-prob = -6.811
+  [rmu_forget] step 270  mean gold log-prob = -6.741
+  [rmu_forget] step 280  mean gold log-prob = -6.649
+  [rmu_forget] step 290  mean gold log-prob = -6.543
+  [rmu_forget] step 300  mean gold log-prob = -6.569
+  [rmu_forget] step 310  mean gold log-prob = -6.508
+  [rmu_forget] step 320  mean gold log-prob = -6.403
+  [rmu_forget] step 330  mean gold log-prob = -6.239
+  [rmu_forget] step 340  mean gold log-prob = -6.081
+  [rmu_forget] step 350  mean gold log-prob = -5.927
+  [rmu_forget] step 360  mean gold log-prob = -6.049
+  [rmu_forget] step 370  mean gold log-prob = -6.019
+  [rmu_forget] step 380  mean gold log-prob = -6.310
+  [rmu_forget] step 390  mean gold log-prob = -6.354
+  [rmu_forget] step 400  mean gold log-prob = -6.423
+
+=== condition base_invented: open-unlearning/tofu_Llama-3.2-1B-Instruct_full ===
+Loading weights:   0%|          | 0/146 [00:00<?, ?it/s]Loading weights:   1%|          | 1/146 [00:00<01:55,  1.26it/s]Loading weights:  58%|█████▊    | 84/146 [00:00<00:00, 117.05it/s]Loading weights:  79%|███████▉  | 115/146 [00:01<00:00, 105.25it/s]Loading weights:  93%|█████████▎| 136/146 [00:01<00:00, 102.09it/s]Loading weights: 100%|██████████| 146/146 [00:01<00:00, 89.56it/s] 
+Loaded: open-unlearning/tofu_Llama-3.2-1B-Instruct_full
+Device: mps | dtype: torch.float16
+Params: 1.2B
+  [base_invented] step   0  mean gold log-prob = -2.992
+  [base_invented] step   1  mean gold log-prob = -2.991
+  [base_invented] step   2  mean gold log-prob = -2.992
+  [base_invented] step   3  mean gold log-prob = -2.991
+  [base_invented] step   4  mean gold log-prob = -2.991
+  [base_invented] step   5  mean gold log-prob = -2.991
+  [base_invented] step   6  mean gold log-prob = -2.991
+  [base_invented] step   7  mean gold log-prob = -2.991
+  [base_invented] step   8  mean gold log-prob = -2.990
+  [base_invented] step   9  mean gold log-prob = -2.990
+  [base_invented] step  10  mean gold log-prob = -2.990
+  [base_invented] step  11  mean gold log-prob = -2.989
+  [base_invented] step  12  mean gold log-prob = -2.989
+  [base_invented] step  13  mean gold log-prob = -2.989
+  [base_invented] step  14  mean gold log-prob = -2.989
+  [base_invented] step  15  mean gold log-prob = -2.989
+  [base_invented] step  16  mean gold log-prob = -2.988
+  [base_invented] step  17  mean gold log-prob = -2.988
+  [base_invented] step  18  mean gold log-prob = -2.988
+  [base_invented] step  19  mean gold log-prob = -2.987
+  [base_invented] step  20  mean gold log-prob = -2.987
+  [base_invented] step  21  mean gold log-prob = -2.987
+  [base_invented] step  22  mean gold log-prob = -2.986
+  [base_invented] step  23  mean gold log-prob = -2.986
+  [base_invented] step  24  mean gold log-prob = -2.986
+  [base_invented] step  25  mean gold log-prob = -2.985
+  [base_invented] step  30  mean gold log-prob = -2.984
+  [base_invented] step  35  mean gold log-prob = -2.983
+  [base_invented] step  40  mean gold log-prob = -2.982
+  [base_invented] step  45  mean gold log-prob = -2.982
+  [base_invented] step  50  mean gold log-prob = -2.982
+  [base_invented] step  55  mean gold log-prob = -2.981
+  [base_invented] step  60  mean gold log-prob = -2.981
+  [base_invented] step  65  mean gold log-prob = -2.980
+  [base_invented] step  70  mean gold log-prob = -2.977
+  [base_invented] step  75  mean gold log-prob = -2.975
+  [base_invented] step  80  mean gold log-prob = -2.974
+  [base_invented] step  85  mean gold log-prob = -2.973
+  [base_invented] step  90  mean gold log-prob = -2.972
+  [base_invented] step  95  mean gold log-prob = -2.970
+  [base_invented] step 100  mean gold log-prob = -2.967
+  [base_invented] step 110  mean gold log-prob = -2.961
+  [base_invented] step 120  mean gold log-prob = -2.959
+  [base_invented] step 130  mean gold log-prob = -2.953
+  [base_invented] step 140  mean gold log-prob = -2.951
+  [base_invented] step 150  mean gold log-prob = -2.950
+  [base_invented] step 160  mean gold log-prob = -2.945
+  [base_invented] step 170  mean gold log-prob = -2.943
+  [base_invented] step 180  mean gold log-prob = -2.942
+  [base_invented] step 190  mean gold log-prob = -2.941
+  [base_invented] step 200  mean gold log-prob = -2.940
+  [base_invented] step 210  mean gold log-prob = -2.940
+  [base_invented] step 220  mean gold log-prob = -2.939
+  [base_invented] step 230  mean gold log-prob = -2.936
+  [base_invented] step 240  mean gold log-prob = -2.930
+  [base_invented] step 250  mean gold log-prob = -2.928
+  [base_invented] step 260  mean gold log-prob = -2.927
+  [base_invented] step 270  mean gold log-prob = -2.920
+  [base_invented] step 280  mean gold log-prob = -2.916
+  [base_invented] step 290  mean gold log-prob = -2.910
+  [base_invented] step 300  mean gold log-prob = -2.904
+  [base_invented] step 310  mean gold log-prob = -2.901
+  [base_invented] step 320  mean gold log-prob = -2.899
+  [base_invented] step 330  mean gold log-prob = -2.898
+  [base_invented] step 340  mean gold log-prob = -2.897
+  [base_invented] step 350  mean gold log-prob = -2.896
+  [base_invented] step 360  mean gold log-prob = -2.895
+  [base_invented] step 370  mean gold log-prob = -2.894
+  [base_invented] step 380  mean gold log-prob = -2.889
+  [base_invented] step 390  mean gold log-prob = -2.886
+  [base_invented] step 400  mean gold log-prob = -2.884
+
+=== condition base_forget: open-unlearning/tofu_Llama-3.2-1B-Instruct_full ===
+Loading weights:   0%|          | 0/146 [00:00<?, ?it/s]Loading weights:   1%|          | 1/146 [00:00<00:31,  4.66it/s]Loading weights:  68%|██████▊   | 99/146 [00:00<00:00, 392.05it/s]Loading weights: 100%|██████████| 146/146 [00:00<00:00, 393.53it/s]
+Loaded: open-unlearning/tofu_Llama-3.2-1B-Instruct_full
+Device: mps | dtype: torch.float16
+Params: 1.2B
+  [base_forget] step   0  mean gold log-prob = -0.683
+  [base_forget] step   1  mean gold log-prob = -0.682
+  [base_forget] step   2  mean gold log-prob = -0.682
+  [base_forget] step   3  mean gold log-prob = -0.682
+  [base_forget] step   4  mean gold log-prob = -0.682
+  [base_forget] step   5  mean gold log-prob = -0.682
+  [base_forget] step   6  mean gold log-prob = -0.682
+  [base_forget] step   7  mean gold log-prob = -0.682
+  [base_forget] step   8  mean gold log-prob = -0.682
+  [base_forget] step   9  mean gold log-prob = -0.682
+  [base_forget] step  10  mean gold log-prob = -0.682
+  [base_forget] step  11  mean gold log-prob = -0.682
+  [base_forget] step  12  mean gold log-prob = -0.682
+  [base_forget] step  13  mean gold log-prob = -0.682
+  [base_forget] step  14  mean gold log-prob = -0.682
+  [base_forget] step  15  mean gold log-prob = -0.682
+  [base_forget] step  16  mean gold log-prob = -0.682
+  [base_forget] step  17  mean gold log-prob = -0.682
+  [base_forget] step  18  mean gold log-prob = -0.682
+  [base_forget] step  19  mean gold log-prob = -0.682
+  [base_forget] step  20  mean gold log-prob = -0.682
+  [base_forget] step  21  mean gold log-prob = -0.682
+  [base_forget] step  22  mean gold log-prob = -0.682
+  [base_forget] step  23  mean gold log-prob = -0.682
+  [base_forget] step  24  mean gold log-prob = -0.682
+  [base_forget] step  25  mean gold log-prob = -0.682
+  [base_forget] step  30  mean gold log-prob = -0.682
+  [base_forget] step  35  mean gold log-prob = -0.682
+  [base_forget] step  40  mean gold log-prob = -0.682
+  [base_forget] step  45  mean gold log-prob = -0.682
+  [base_forget] step  50  mean gold log-prob = -0.682
+  [base_forget] step  55  mean gold log-prob = -0.682
+  [base_forget] step  60  mean gold log-prob = -0.683
+  [base_forget] step  65  mean gold log-prob = -0.683
+  [base_forget] step  70  mean gold log-prob = -0.683
+  [base_forget] step  75  mean gold log-prob = -0.683
+  [base_forget] step  80  mean gold log-prob = -0.683
+  [base_forget] step  85  mean gold log-prob = -0.683
+  [base_forget] step  90  mean gold log-prob = -0.683
+  [base_forget] step  95  mean gold log-prob = -0.683
+  [base_forget] step 100  mean gold log-prob = -0.683
+  [base_forget] step 110  mean gold log-prob = -0.683
+  [base_forget] step 120  mean gold log-prob = -0.683
+  [base_forget] step 130  mean gold log-prob = -0.684
+  [base_forget] step 140  mean gold log-prob = -0.684
+  [base_forget] step 150  mean gold log-prob = -0.685
+  [base_forget] step 160  mean gold log-prob = -0.685
+  [base_forget] step 170  mean gold log-prob = -0.685
+  [base_forget] step 180  mean gold log-prob = -0.685
+  [base_forget] step 190  mean gold log-prob = -0.685
+  [base_forget] step 200  mean gold log-prob = -0.686
+  [base_forget] step 210  mean gold log-prob = -0.686
+  [base_forget] step 220  mean gold log-prob = -0.687
+  [base_forget] step 230  mean gold log-prob = -0.687
+  [base_forget] step 240  mean gold log-prob = -0.687
+  [base_forget] step 250  mean gold log-prob = -0.687
+  [base_forget] step 260  mean gold log-prob = -0.688
+  [base_forget] step 270  mean gold log-prob = -0.688
+  [base_forget] step 280  mean gold log-prob = -0.688
+  [base_forget] step 290  mean gold log-prob = -0.688
+  [base_forget] step 300  mean gold log-prob = -0.688
+  [base_forget] step 310  mean gold log-prob = -0.687
+  [base_forget] step 320  mean gold log-prob = -0.687
+  [base_forget] step 330  mean gold log-prob = -0.688
+  [base_forget] step 340  mean gold log-prob = -0.688
+  [base_forget] step 350  mean gold log-prob = -0.688
+  [base_forget] step 360  mean gold log-prob = -0.688
+  [base_forget] step 370  mean gold log-prob = -0.687
+  [base_forget] step 380  mean gold log-prob = -0.688
+  [base_forget] step 390  mean gold log-prob = -0.688
+  [base_forget] step 400  mean gold log-prob = -0.688
+
+DONE. curves -> ../results/relearning/auth20.step400.lr2e-5.relearning_curves.json
